@@ -1,35 +1,32 @@
-const patients = [
-  {
-    name: "Paciente 1",
-    image: "https://randomuser.me/api/portraits/men/45.jpg",
-    dialogue: "Eu não sei mais quem eu sou. Tudo parece vazio.",
-    choices: [
-      { text: "Você não está sozinho", impact: +2 },
-      { text: "Isso é só uma fase", impact: 0 },
-      { text: "Talvez você precise de ajuda", impact: +1 },
-      { text: "Todos se sentem assim, supere", impact: -2 }
-    ]
-  },
-  {
-    name: "Paciente 2",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
-    dialogue: "Sinto que ninguém se importa comigo.",
-    choices: [
-      { text: "Eu me importo", impact: +2 },
-      { text: "Você já tentou conversar com alguém?", impact: +1 },
-      { text: "Isso é drama", impact: -2 },
-      { text: "Talvez você esteja exagerando", impact: -1 }
-    ]
-  },
-  {
-    name: "Paciente 3",
-    image: "https://randomuser.me/api/portraits/men/12.jpg",
-    dialogue: "Tenho medo de nunca ser suficiente para ninguém.",
-    choices: [
-      { text: "Você é importante do jeito que é", impact: +2 },
-      { text: "Todos temos inseguranças", impact: +1 },
-      { text: "Isso é coisa da sua cabeça", impact: -1 },
-      { text: "Talvez ninguém se importe mesmo", impact: -2 }
-    ]
-  }
-];
+const patient = {
+  image: "https://i.imgur.com/2ZC6ZtU.png",
+  dialogueSequence: [
+    {
+      text: "Às vezes me pergunto se alguém realmente me vê... ou se sou só mais um vulto no fundo da sala.",
+      choices: [
+        { text: "Eu estou te vendo agora.", impact: +2 },
+        { text: "Talvez você precise se mostrar mais.", impact: 0 },
+        { text: "Isso é paranoia.", impact: -2 },
+        { text: "Todos se sentem invisíveis às vezes.", impact: +1 }
+      ]
+    },
+    {
+      text: "É difícil confiar. Já fui quebrado tantas vezes que não sei mais como juntar os pedaços.",
+      choices: [
+        { text: "Você não precisa se reconstruir sozinho.", impact: +2 },
+        { text: "Talvez seja hora de deixar o passado.", impact: +1 },
+        { text: "Você se vitimiza demais.", impact: -2 },
+        { text: "E se os pedaços formarem algo novo?", impact: +1 }
+      ]
+    },
+    {
+      text: "Hoje pensei em desaparecer. Não por raiva... só por cansaço.",
+      choices: [
+        { text: "Você merece descanso, não desaparecimento.", impact: +2 },
+        { text: "Já pensou em buscar ajuda profissional?", impact: +1 },
+        { text: "Isso é drama.", impact: -2 },
+        { text: "O que te fez pensar nisso?", impact: +1 }
+      ]
+    }
+  ]
+};
