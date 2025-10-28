@@ -1,4 +1,4 @@
-let currentPatient;
+let currentStep = 0;
 let totalImpact = 0;
 
 const img = document.getElementById("patient-img");
@@ -8,20 +8,21 @@ const outcomeDiv = document.getElementById("outcome");
 const restartBtn = document.getElementById("restart");
 
 function startGame() {
+  currentStep = 0;
   totalImpact = 0;
   outcomeDiv.classList.add("hidden");
   restartBtn.classList.add("hidden");
   choicesDiv.innerHTML = "";
   choicesDiv.classList.add("hidden");
 
-  currentPatient = patients[Math.floor(Math.random() * patients.length)];
-  img.src = currentPatient.image;
+  img.src = patient.image;
   dialogueBox.innerHTML = "";
-  typeText(currentPatient.dialogue, () => showChoices());
+  typeText(patient.dialogueSequence[currentStep].text, () => showChoices());
 }
 
 function typeText(text, callback) {
   let i = 0;
+  dialogueBox.textContent = "";
   const interval = setInterval(() => {
     dialogueBox.textContent += text[i];
     i++;
@@ -33,8 +34,10 @@ function typeText(text, callback) {
 }
 
 function showChoices() {
+  choicesDiv.innerHTML = "";
   choicesDiv.classList.remove("hidden");
-  currentPatient.choices.forEach((choice) => {
+  const choices = patient.dialogueSequence[currentStep].choices;
+  choices.forEach((choice) => {
     const btn = document.createElement("button");
     btn.textContent = choice.text;
     btn.onclick = () => handleChoice(choice.impact);
@@ -44,18 +47,24 @@ function showChoices() {
 
 function handleChoice(impact) {
   totalImpact += impact;
+  currentStep++;
   choicesDiv.classList.add("hidden");
-  showOutcome();
+
+  if (currentStep < patient.dialogueSequence.length) {
+    typeText(patient.dialogueSequence[currentStep].text, () => showChoices());
+  } else {
+    showOutcome();
+  }
 }
 
 function showOutcome() {
   let result = "";
-  if (totalImpact >= 2) {
-    result = "O paciente superou os desafios, construiu uma família e vive feliz.";
-  } else if (totalImpact >= 0) {
-    result = "O paciente vive uma vida comum, com altos e baixos.";
+  if (totalImpact >= 5) {
+    result = "O paciente encontrou sentido, reconstruiu sua vida e formou conexões profundas.";
+  } else if (totalImpact >= 2) {
+    result = "O paciente segue em frente com cicatrizes, mas com esperança.";
   } else {
-    result = "O paciente não resistiu à dor, viveu sozinho e acabou tirando a própria vida.";
+    result = "O paciente se isolou, vive em silêncio e não encontrou desfecho feliz.";
   }
   outcomeDiv.textContent = result;
   outcomeDiv.classList.remove("hidden");
