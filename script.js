@@ -1,28 +1,54 @@
 const empresaInput = document.getElementById("empresa");
 const nomeEmpresaSpan = document.getElementById("nomeEmpresa");
 const totalSpan = document.getElementById("total");
-const saldoInputs = document.querySelectorAll(".saldo");
+const empresasDiv = document.getElementById("empresas");
+const adicionarEmpresaBtn = document.getElementById("adicionarEmpresa");
 const fluxoDiv = document.getElementById("fluxo");
 
-// Atualiza nome da empresa
 empresaInput.addEventListener("input", () => {
   nomeEmpresaSpan.textContent = empresaInput.value || "[Nome da Empresa]";
 });
 
-// Calcula total dos saldos
-saldoInputs.forEach(input => {
-  input.addEventListener("input", calcularTotal);
-});
+let empresas = [];
+
+function criarEmpresa(nome = "Nova Empresa") {
+  const empresaBox = document.createElement("div");
+  empresaBox.className = "empresa-box";
+
+  empresaBox.innerHTML = `
+    <h3>${nome}</h3>
+    <label>Banco do Brasil:</label>
+    <input type="number" class="saldo" />
+    <label>Sicredi:</label>
+    <input type="number" class="saldo" />
+    <label>Sicoob:</label>
+    <input type="number" class="saldo" />
+    <label>Itaú:</label>
+    <input type="number" class="saldo" />
+  `;
+
+  empresasDiv.appendChild(empresaBox);
+
+  const saldos = empresaBox.querySelectorAll(".saldo");
+  saldos.forEach(input => input.addEventListener("input", calcularTotal));
+  empresas.push(saldos);
+}
 
 function calcularTotal() {
   let total = 0;
-  saldoInputs.forEach(input => {
-    total += parseFloat(input.value) || 0;
+  empresas.forEach(grupo => {
+    grupo.forEach(input => {
+      total += parseFloat(input.value) || 0;
+    });
   });
   totalSpan.textContent = total.toFixed(2);
 }
 
-// Gera fluxo de caixa para os próximos 7 dias
+adicionarEmpresaBtn.addEventListener("click", () => {
+  const nome = prompt("Digite o nome da nova empresa:");
+  if (nome) criarEmpresa(nome);
+});
+
 function gerarFluxo() {
   const hoje = new Date();
   for (let i = 0; i < 7; i++) {
@@ -31,6 +57,7 @@ function gerarFluxo() {
     const dataFormatada = dia.toLocaleDateString("pt-BR");
 
     const container = document.createElement("div");
+    container.className = "empresa-box";
     container.innerHTML = `
       <h3>${dataFormatada}</h3>
       <label>A pagar:</label>
@@ -58,3 +85,4 @@ function gerarFluxo() {
 }
 
 gerarFluxo();
+criarEmpresa("Empresa Padrão");
