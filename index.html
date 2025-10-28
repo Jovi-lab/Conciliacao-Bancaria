@@ -3,48 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conciliação Bancária</title>
+  <title>Jogo Psicológico</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <!-- Ícone principal -->
-    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920322.png" alt="Ícone bancário" class="icon" />
-    <h1>Conciliação Bancária</h1>
-
-    <!-- Seção de nome da empresa -->
-    <div class="empresa-header">
-      <label for="empresa">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Empresa" width="20" />
-        Nome da Empresa:
-      </label>
-      <input type="text" id="empresa" />
-    </div>
-
-    <!-- Empresas adicionadas -->
-    <div id="empresas">
-      <!-- Empresas serão adicionadas aqui -->
-    </div>
-
-    <!-- Botão para adicionar empresa -->
-    <button id="adicionarEmpresa">
-      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Adicionar" width="16" style="vertical-align: middle;" />
-      Adicionar Empresa
-    </button>
-
-    <!-- Total diário -->
-    <p class="total">
-      Total diário da empresa <span id="nomeEmpresa"></span>: R$ <span id="total">0.00</span>
-    </p>
-
-    <!-- Fluxo de caixa -->
-    <h2>
-      <img src="https://cdn-icons-png.flaticon.com/512/1170/1170627.png" alt="Fluxo de caixa" width="24" style="vertical-align: middle;" />
-      Fluxo de Caixa (7 dias)
-    </h2>
-    <div id="fluxo"></div>
+    <h1>Paciente em sessão</h1>
+    <img id="patient-img" src="" alt="Paciente" />
+    <div id="dialogue-box"></div>
+    <div id="choices" class="hidden"></div>
+    <div id="outcome" class="hidden"></div>
+    <button id="restart" class="hidden">Reiniciar</button>
   </div>
-
-  <script src="script.js"></script>
+  <script src="scripts/data.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
