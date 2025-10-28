@@ -1,102 +1,44 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #e0f7fa, #ffffff);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 40px;
-}
-
-/* Container principal */
-.container {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px;
-  animation: fadeIn 0.8s ease;
-}
-
-/* Animação suave */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Ícone decorativo */
-.icon {
-  width: 80px;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-/* Títulos */
-h1, h2 {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
   text-align: center;
-  color: #00796b;
-  margin-bottom: 20px;
-}
-
-/* Inputs e botões */
-input[type="text"], input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: border-color 0.3s;
-}
-
-input:focus {
-  border-color: #00796b;
-  outline: none;
-}
-
-button {
-  background-color: #00796b;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  display: block;
-  margin: 20px auto;
-}
-
-button:hover {
-  background-color: #004d40;
-}
-
-/* Blocos de empresa e fluxo */
-.empresa-box {
-  background-color: #f1f8e9;
-  border: 1px solid #ddd;
   padding: 20px;
-  border-radius: 12px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+#patient-img {
+  width: 200px;
+  border-radius: 50%;
   margin-bottom: 20px;
-  transition: transform 0.3s;
 }
 
-.empresa-box:hover {
-  transform: scale(1.01);
+#dialogue-box {
+  border: 2px solid #333;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 100px;
+  margin-bottom: 20px;
+  font-size: 18px;
 }
 
-/* Total */
-.total {
-  text-align: center;
-  font-size: 1.2em;
+#choices button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#outcome {
   font-weight: bold;
+  font-size: 20px;
   margin-top: 20px;
 }
