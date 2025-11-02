@@ -9,7 +9,6 @@ function renderScene(sceneId) {
     <p>${scene.text}</p>
   `;
 
-  // Se a cena tiver escolhas, renderiza os botões
   if (scene.choices && scene.choices.length > 0) {
     scene.choices.forEach(choice => {
       const button = document.createElement("button");
@@ -18,7 +17,6 @@ function renderScene(sceneId) {
       container.appendChild(button);
     });
   } else if (scene.lesson) {
-    // Se for uma cena alternativa com lição
     const lessonBox = document.createElement("div");
     lessonBox.className = "lesson";
     lessonBox.textContent = "💡 " + scene.lesson;
@@ -30,7 +28,6 @@ function handleChoice(choice) {
   const nextScene = storyData[choice.next];
   renderScene(choice.next);
 
-  // Se a escolha for incorreta, exibe a lição
   if (!choice.correct && nextScene.lesson) {
     setTimeout(() => {
       const lessonBox = document.createElement("div");
