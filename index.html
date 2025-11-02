@@ -1,173 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Última Ceia - História Interativa</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Roboto:wght@400;500&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: linear-gradient(145deg, #1a1a1a, #2c2c2c);
-      color: #f2f2f2;
-      font-family: 'Roboto', sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      text-align: center;
-      padding: 20px;
-      background-color: #000000aa;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-
-    h1 {
-      font-family: 'Marcellus SC', serif;
-      color: #ffe082;
-      letter-spacing: 2px;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-
-    #image-container {
-      width: 90%;
-      max-width: 800px;
-      margin-bottom: 20px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-    }
-
-    #image-container img {
-      width: 100%;
-      border-radius: 16px;
-      display: block;
-      filter: contrast(1.1) brightness(0.95);
-      transition: all 0.6s ease;
-    }
-
-    #text-container {
-      max-width: 800px;
-      text-align: justify;
-      line-height: 1.7;
-      font-size: 1.1em;
-      margin-bottom: 25px;
-    }
-
-    #choices {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .choice-btn {
-      background-color: #ffe082;
-      border: none;
-      color: #2c2c2c;
-      font-weight: bold;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s ease;
-    }
-
-    .choice-btn:hover {
-      background-color: #ffca28;
-      transform: scale(1.05);
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background-color: #111;
-      color: #aaa;
-      font-size: 0.9em;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>História Interativa — A Última Ceia</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>A Última Ceia</h1>
-    <p>Escolha o ponto de vista para ver a cena sob outra perspectiva</p>
+    <p class="subtitle">Escolha um ponto de vista para ver a cena.</p>
   </header>
 
-  <main id="story-container">
-    <div id="image-container">
-      <img id="scene-image" src="" alt="Cena ilustrativa">
+  <main id="story-container" role="main">
+    <div id="image-container" aria-hidden="false">
+      <img id="scene-image" src="" alt="Ilustração da cena" />
     </div>
 
-    <div id="text-container">
+    <section id="text-container" aria-live="polite">
       <p id="scene-text"></p>
-    </div>
+    </section>
 
-    <div id="choices">
+    <nav id="choices" aria-label="Escolhas de ponto de vista">
       <button class="choice-btn" data-view="cristo">Ver como Cristo</button>
       <button class="choice-btn" data-view="judas">Ver como Judas</button>
       <button class="choice-btn" data-view="discipulos">Ver como Discípulos</button>
-    </div>
+    </nav>
   </main>
 
   <footer>
-    <p>© 2025 História Interativa - Inspirado nos Evangelhos</p>
+    <p>© 2025 — Projeto História Interativa</p>
   </footer>
 
-  <script>
-    // === Dados da história ===
-    const storyData = {
-      cristo: {
-        text: "Jesus olha para cada um dos discípulos, com o peso do destino em seu olhar. Ele parte o pão, sabendo que este é o último momento de paz antes da tempestade.",
-        image: "https://cdn.pixabay.com/photo/2018/03/06/21/45/jesus-3201218_1280.jpg"
-      },
-      judas: {
-        text: "Judas segura o pão com as mãos trêmulas. O sabor é amargo, não pelo trigo, mas pela culpa que já o corrói. O olhar de Cristo o atravessa como uma lâmina silenciosa.",
-        image: "https://cdn.pixabay.com/photo/2023/07/20/11/10/last-supper-8140755_1280.jpg"
-      },
-      discipulos: {
-        text: "Os discípulos trocam olhares confusos. Há algo diferente naquela noite — uma tristeza que paira como fumaça no ar. Nenhum deles compreende o verdadeiro peso daquelas palavras.",
-        image: "https://cdn.pixabay.com/photo/2021/05/24/07/48/last-supper-6277444_1280.jpg"
-      }
-    };
-
-    // === Código principal ===
-    document.addEventListener("DOMContentLoaded", () => {
-      const textEl = document.getElementById("scene-text");
-      const imageEl = document.getElementById("scene-image");
-      const buttons = document.querySelectorAll(".choice-btn");
-
-      const setView = (view) => {
-        const scene = storyData[view];
-        if (scene) {
-          textEl.textContent = scene.text;
-          imageEl.src = scene.image;
-        }
-      };
-
-      // Carrega visão inicial
-      setView("cristo");
-
-      // Interações
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const view = btn.getAttribute("data-view");
-          setView(view);
-        });
-      });
-    });
-  </script>
+  <!-- Scripts: data.js deve ser carregado antes de main.js -->
+  <script src="data.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
