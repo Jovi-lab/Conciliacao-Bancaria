@@ -1,24 +1,33 @@
-const container = document.getElementById("story");
+const container = document.getElementById("story-container");
 let currentScene = "intro";
 
 function renderScene(sceneId) {
-  const scene = storyData.find(s => s.id === sceneId);
+  const scene = storyData[sceneId];
   container.innerHTML = `
     <h2>${scene.title}</h2>
-    <img src="${scene.image}" alt="Cena ilustrativa" class="scene-img">
+    <img src="${scene.image}" alt="Cena ilustrativa" class="scene">
     <p>${scene.text}</p>
-    <div class="choices">
-      ${scene.choices.map((choice, index) => `
-        <button onclick="choose('${choice.nextId}', '${choice.lesson}')">${choice.text}</button>
-      `).join("")}
-    </div>
   `;
-}
 
-function choose(nextId, lesson) {
-  alert("📜 Ensinamento: " + lesson);
-  currentScene = nextId;
-  renderScene(currentScene);
-}
-
-window.onload = () => renderScene(currentScene);
+  if (scene.choices && scene.choices.length > 0) {
+    scene.choices.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.textContent = choice.text;
+      btn.onclick = () => {
+        if (choice.correct) {
+          renderScene(choice.next);
+        } else {
+          renderScene(choice.next);
+          setTimeout(() => {
+            const lesson = storyData[choice.next].lesson;
+            if (lesson) {
+              const div = document.createElement("div");
+              div.className = "lesson";
+              div.textContent = "💡 " + lesson;
+              container.appendChild(div);
+            }
+          }, 500);
+        }
+      };
+      container.appendChild(btn);
+   
