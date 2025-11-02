@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Jonas e o Grande Peixe</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Última Ceia - História Interativa</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="overlay"></div>
   <header>
-    <h1>Jonas e o Grande Peixe</h1>
-    <p>Escolha com sabedoria. Cada decisão revela um caminho e um ensinamento.</p>
+    <h1>A Última Ceia</h1>
+    <p>Escolha o ponto de vista para ver a cena sob outra perspectiva</p>
   </header>
-  <main id="story-container"></main>
-  <script src="scripts/data.js"></script>
-  <script src="scripts/main.js"></script>
+
+  <main id="story-container">
+    <div id="image-container">
+      <img id="scene-image" src="" alt="Cena ilustrativa" />
+    </div>
+
+    <div id="text-container">
+      <p id="scene-text"></p>
+    </div>
+
+    <div id="choices">
+      <button class="choice-btn" data-view="cristo">Ver como Cristo</button>
+      <button class="choice-btn" data-view="judas">Ver como Judas</button>
+      <button class="choice-btn" data-view="discípulos">Ver como Discípulos</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 História Interativa - Inspirado nos Evangelhos</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
