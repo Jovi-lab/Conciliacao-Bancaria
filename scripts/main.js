@@ -9,25 +9,36 @@ function renderScene(sceneId) {
     <p>${scene.text}</p>
   `;
 
+  // Se a cena tiver escolhas, renderiza os botões
   if (scene.choices && scene.choices.length > 0) {
     scene.choices.forEach(choice => {
-      const btn = document.createElement("button");
-      btn.textContent = choice.text;
-      btn.onclick = () => {
-        if (choice.correct) {
-          renderScene(choice.next);
-        } else {
-          renderScene(choice.next);
-          setTimeout(() => {
-            const lesson = storyData[choice.next].lesson;
-            if (lesson) {
-              const div = document.createElement("div");
-              div.className = "lesson";
-              div.textContent = "💡 " + lesson;
-              container.appendChild(div);
-            }
-          }, 500);
-        }
-      };
-      container.appendChild(btn);
-   
+      const button = document.createElement("button");
+      button.textContent = choice.text;
+      button.onclick = () => handleChoice(choice);
+      container.appendChild(button);
+    });
+  } else if (scene.lesson) {
+    // Se for uma cena alternativa com lição
+    const lessonBox = document.createElement("div");
+    lessonBox.className = "lesson";
+    lessonBox.textContent = "💡 " + scene.lesson;
+    container.appendChild(lessonBox);
+  }
+}
+
+function handleChoice(choice) {
+  const nextScene = storyData[choice.next];
+  renderScene(choice.next);
+
+  // Se a escolha for incorreta, exibe a lição
+  if (!choice.correct && nextScene.lesson) {
+    setTimeout(() => {
+      const lessonBox = document.createElement("div");
+      lessonBox.className = "lesson";
+      lessonBox.textContent = "💡 " + nextScene.lesson;
+      container.appendChild(lessonBox);
+    }, 500);
+  }
+}
+
+window.onload = () => renderScene(currentScene);
