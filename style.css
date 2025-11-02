@@ -46,10 +46,11 @@ main {
 img.scene {
   width: 100%;
   max-height: 400px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 10px;
   margin: 20px 0;
   border: 2px solid #00aaff;
+  background-color: #000;
 }
 
 button {
