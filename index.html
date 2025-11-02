@@ -1,39 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>História Interativa — A Última Ceia</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histórias Interativas — A Última Ceia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Roboto:wght@400;500&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(145deg, #0d0d0f 0%, #252525 100%);
+      color: #f3f3f3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      font-family: 'Marcellus SC', serif;
+      color: #ffd679;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .subtitle { color: #cfcfcf; margin-bottom: 20px; }
+
+    #image-container {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+      background: #111;
+      margin-bottom: 16px;
+    }
+    #scene-image {
+      width: 100%;
+      display: block;
+      transition: opacity .5s ease;
+    }
+    #text-container {
+      max-width: 900px;
+      background: rgba(0,0,0,0.4);
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      text-align: justify;
+    }
+    #choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .choice-btn {
+      background: #ffd679;
+      color: #111;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .choice-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    footer {
+      margin-top: auto;
+      padding: 12px;
+      color: #9e9e9e;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>A Última Ceia</h1>
-    <p class="subtitle">Escolha um ponto de vista para ver a cena.</p>
-  </header>
+  <h1>A Última Ceia</h1>
+  <p class="subtitle">Escolha um ponto de vista para ver a cena.</p>
 
-  <main id="story-container" role="main">
-    <div id="image-container" aria-hidden="false">
-      <img id="scene-image" src="" alt="Ilustração da cena" />
-    </div>
+  <div id="image-container">
+    <img id="scene-image" src="" alt="Cena ilustrada" />
+  </div>
 
-    <section id="text-container" aria-live="polite">
-      <p id="scene-text"></p>
-    </section>
+  <div id="text-container">
+    <p id="scene-text"></p>
+  </div>
 
-    <nav id="choices" aria-label="Escolhas de ponto de vista">
-      <button class="choice-btn" data-view="cristo">Ver como Cristo</button>
-      <button class="choice-btn" data-view="judas">Ver como Judas</button>
-      <button class="choice-btn" data-view="discipulos">Ver como Discípulos</button>
-    </nav>
-  </main>
+  <div id="choices">
+    <button class="choice-btn" data-view="cristo">Ver como Cristo</button>
+    <button class="choice-btn" data-view="judas">Ver como Judas</button>
+    <button class="choice-btn" data-view="discipulos">Ver como Discípulos</button>
+  </div>
 
-  <footer>
-    <p>© 2025 — Projeto História Interativa</p>
-  </footer>
+  <footer>© 2025 — História Interativa</footer>
 
-  <!-- Scripts: data.js deve ser carregado antes de main.js -->
-  <script src="data.js"></script>
-  <script src="main.js"></script>
+  <script>
+    const storyData = {
+      cristo: {
+        text: "Jesus olha para cada um dos discípulos. Há calma e dor ao mesmo tempo — como se cada palavra fosse uma despedida que já escorre pela noite.",
+        image: "https://cdn.pixabay.com/photo/2018/03/06/21/45/jesus-3201218_1280.jpg",
+        alt: "Jesus na mesa com os discípulos"
+      },
+      judas: {
+        text: "Judas observa com o coração apertado; o gesto de aceitar o pão pesa mais que o próprio alimento. A culpa já começa a fazer sombra sobre seus passos.",
+        image: "https://cdn.pixabay.com/photo/2023/07/20/11/10/last-supper-8140755_1280.jpg",
+        alt: "Judas pensativo durante a ceia"
+      },
+      discipulos: {
+        text: "Os discípulos trocam olhares e sussurros. A noite tem um tom diferente — ninguém consegue ainda compreender a profundidade do que está por vir.",
+        image: "https://cdn.pixabay.com/photo/2021/05/24/07/48/last-supper-6277444_1280.jpg",
+        alt: "Discípulos durante a Última Ceia"
+      }
+    };
+
+    const textEl = document.getElementById("scene-text");
+    const imageEl = document.getElementById("scene-image");
+    const buttons = document.querySelectorAll(".choice-btn");
+
+    function setView(viewKey) {
+      const scene = storyData[viewKey];
+      if (!scene) return;
+      textEl.textContent = scene.text;
+      imageEl.style.opacity = 0;
+      setTimeout(() => {
+        imageEl.src = scene.image;
+        imageEl.alt = scene.alt;
+      }, 150);
+    }
+
+    imageEl.addEventListener("load", () => {
+      imageEl.style.opacity = 1;
+    });
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const view = btn.getAttribute("data-view");
+        setView(view);
+      });
+    });
+
+    // visão inicial
+    setView("cristo");
+  </script>
 </body>
 </html>
