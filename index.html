@@ -6,7 +6,6 @@
   <title>Histórias Interativas — A Última Ceia</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Roboto:wght@400;500&display=swap');
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Roboto', sans-serif;
@@ -18,7 +17,6 @@
       min-height: 100vh;
       padding: 20px;
     }
-
     h1 {
       font-family: 'Marcellus SC', serif;
       color: #ffd679;
@@ -42,7 +40,7 @@
       width: 100%;
       display: block;
       opacity: 0;
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition: opacity 0.7s ease;
     }
 
     #text-container {
@@ -142,7 +140,7 @@
       const scene = storyData[viewKey];
       if (!scene) return;
 
-      // Fade-out
+      // fade out
       imageEl.style.opacity = 0;
       textContainer.style.opacity = 0;
 
@@ -150,7 +148,7 @@
         imageEl.src = scene.image;
         imageEl.alt = scene.alt;
         textEl.textContent = scene.text;
-        // Fade-in
+        // fade in
         imageEl.style.opacity = 1;
         textContainer.style.opacity = 1;
       }, 250);
