@@ -2,17 +2,17 @@ const storyData = {
   intro: {
     title: "A Missão de Jonas",
     text: "Deus pediu a Jonas que fosse até Nínive para alertar o povo. Mas Jonas ficou com medo...",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", // oceano realista
+    image: "https://images.unsplash.com/photo-1601758123927-1961c6e5f7c8?auto=format&fit=crop&w=1920&q=80",
     choices: [
       { text: "Obedecer e ir para Nínive", next: "ninive", correct: true },
       { text: "Fugir para Társis", next: "fuga", correct: false },
-      { text: "Ficar parado pensando", next: "reflexao", correct: false }
+      { text: "Ficar pensando", next: "reflexao", correct: false }
     ]
   },
   fuga: {
-    title: "Jonas tenta fugir",
+    title: "A Fuga",
     text: "Jonas embarca num navio, mas uma tempestade terrível começa!",
-    image: "https://images.unsplash.com/photo-1509817316-6e3d5d9c1f4c", // tempestade realista
+    image: "https://images.unsplash.com/photo-1509817316-6e3d5d9c1f4c?auto=format&fit=crop&w=1920&q=80",
     choices: [
       { text: "Confessar aos marinheiros", next: "confissao", correct: true },
       { text: "Se esconder no porão", next: "porao", correct: false },
@@ -20,73 +20,72 @@ const storyData = {
     ]
   },
   confissao: {
-    title: "Jonas é lançado ao mar",
+    title: "O Mar e o Peixe",
     text: "Jonas confessa e é lançado ao mar. Um grande peixe o engole!",
-    image: "https://images.unsplash.com/photo-1601758123927-1961c6e5f7c8", // baleia realista
+    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1920&q=80",
     choices: [
       { text: "Orar dentro do peixe", next: "arrependimento", correct: true },
-      { text: "Tentar escapar sozinho", next: "tentativa", correct: false },
+      { text: "Tentar escapar", next: "tentativa", correct: false },
       { text: "Fazer amizade com o peixe", next: "amizade", correct: false }
     ]
   },
   arrependimento: {
-    title: "Jonas ora e é libertado",
+    title: "Libertação",
     text: "Jonas ora sinceramente. Deus o liberta e ele vai para Nínive.",
-    image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0", // praia realista
+    image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1920&q=80",
     choices: [
       { text: "Pregar em Nínive", next: "ninive", correct: true },
       { text: "Voltar para casa", next: "volta", correct: false },
-      { text: "Ficar na praia descansando", next: "descanso", correct: false }
+      { text: "Ficar na praia", next: "descanso", correct: false }
     ]
   },
   ninive: {
     title: "Missão Cumprida",
     text: "Jonas prega em Nínive. O povo se arrepende e Deus os perdoa!",
-    image: "https://images.unsplash.com/photo-1581091870620-1e7e8f3f9b6b", // cidade realista
+    image: "https://images.unsplash.com/photo-1581091870620-1e7e8f3f9b6b?auto=format&fit=crop&w=1920&q=80",
     choices: []
   },
 
-  // Cenas alternativas com observações engraçadas
+  // Alternativas reflexivas
   reflexao: {
-    title: "Jonas pensou demais...",
-    text: "Enquanto Jonas refletia, o tempo passou... e ele perdeu o navio!",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", // oceano calmo
-    lesson: "Às vezes pensar demais nos faz perder oportunidades."
+    title: "Pensando demais...",
+    text: "Jonas pensou tanto que perdeu o navio.",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80",
+    lesson: "Pensar é bom, mas agir é essencial."
   },
   porao: {
-    title: "Jonas se escondeu",
-    text: "Jonas dormiu no porão... e quase virou sushi!",
-    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90", // porão escuro
-    lesson: "Fugir dos problemas só os deixa mais assustadores."
+    title: "Escondido",
+    text: "Jonas se escondeu e quase virou sushi.",
+    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1920&q=80",
+    lesson: "Fugir dos problemas não os resolve."
   },
   cantar: {
-    title: "Jonas cantou",
-    text: "Jonas cantou tão alto que os peixes fugiram... menos um!",
-    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438", // peixe curioso
-    lesson: "Nem toda solução criativa resolve tempestades."
+    title: "Cantoria inútil",
+    text: "Jonas cantou, mas a tempestade só piorou.",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80",
+    lesson: "Criatividade sem direção não acalma tempestades."
   },
   tentativa: {
-    title: "Jonas tentou escapar",
-    text: "Jonas tentou sair pela guelra... mas era só uma ideia furada.",
-    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90", // interior do peixe
-    lesson: "Nem toda saída é uma solução."
+    title: "Tentativa frustrada",
+    text: "Jonas tentou sair pela guelra... sem sucesso.",
+    image: "https://images.unsplash.com/photo-1601758123927-1961c6e5f7c8?auto=format&fit=crop&w=1920&q=80",
+    lesson: "Nem toda saída é solução."
   },
   amizade: {
-    title: "Jonas fez amizade",
-    text: "Jonas chamou o peixe de 'Peixoto' e jogaram conversa fora por 3 dias.",
-    image: "https://images.unsplash.com/photo-1601758123927-1961c6e5f7c8", // peixe realista
-    lesson: "Até amizades improváveis podem ensinar algo... mas não substituem a missão."
+    title: "Peixoto, o amigo",
+    text: "Jonas fez amizade com o peixe. Conversaram por dias.",
+    image: "https://images.unsplash.com/photo-1601758123927-1961c6e5f7c8?auto=format&fit=crop&w=1920&q=80",
+    lesson: "Amizades improváveis ensinam, mas não substituem a missão."
   },
   volta: {
-    title: "Jonas voltou pra casa",
-    text: "Jonas voltou... mas a missão ainda o esperava.",
-    image: "https://images.unsplash.com/photo-1606788075761-6c0f7f3f7f3f", // casa simples
-    lesson: "O conforto não deve nos afastar do propósito."
-  },
+    title: "Conforto",
+    text: "Jonas voltou para casa, mas a missão o esperava.",
+    image: "https://images.unsplash.com/photo-1601758123927-1961c6e5f7c8?auto=format&fit=crop&w=1920&q=80",
+      },
   descanso: {
-    title: "Jonas descansou demais",
-    text: "Jonas dormiu tanto que quase virou areia!",
-    image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0", // praia realista
-    lesson: "Descansar é bom, mas não podemos esquecer nossa missão."
+    title: "Descanso eterno?",
+    text: "Jonas deitou na praia... e esqueceu da missão.",
+    image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1920&q=80",
+    lesson: "Descansar é necessário, mas não podemos esquecer o propósito."
   }
 };
