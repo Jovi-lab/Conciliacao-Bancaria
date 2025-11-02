@@ -3,16 +3,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageEl = document.getElementById("scene-image");
   const buttons = document.querySelectorAll(".choice-btn");
 
-  // Mostra visão inicial (Cristo)
+  // função para atualizar cena
   const setView = (view) => {
     const scene = storyData[view];
-    textEl.textContent = scene.text;
-    imageEl.src = scene.image;
+    if (scene) {
+      textEl.textContent = scene.text;
+      imageEl.src = scene.image;
+    } else {
+      textEl.textContent = "Erro: ponto de vista não encontrado.";
+      imageEl.src = "";
+    }
   };
 
+  // visão inicial
   setView("cristo");
 
-  // Muda o ponto de vista ao clicar
+  // adicionar eventos aos botões
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const view = btn.getAttribute("data-view");
